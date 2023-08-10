@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/container_login"
+    android:background="@drawable/gradient_bg"
+    tools:context=".bin.NetworkSettingActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#66000000"
+        android:weightSum="2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:text="CONFIGURATION"
+                android:id="@+id/txt_login"
+                android:visibility="visible"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_gravity="bottom|center"
+                android:layout_weight="0.2"/>
+
+        </LinearLayout>
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="http://example.com/folder_name/"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/gray"
+            android:gravity="left|center"
+            android:layout_gravity="center"
+            android:id="@+id/edt_base_url"
+            android:background="@drawable/edt_bg_selector"
+            android:layout_marginTop="10dp"
+            android:textColor="#FFFFFF"
+            android:nextFocusForward="@id/btn_configure"
+            android:maxLines="1"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/btn_configure"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:background="@drawable/btn_border"
+            android:layout_gravity="center"
+            android:text="configure"
+            android:textColor="#FFFFFF" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

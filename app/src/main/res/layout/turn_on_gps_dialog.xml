@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title_no_gps_Bin"
+                android:layout_width="match_parent"
+                android:text="Enable location"
+                android:layout_marginLeft="20dp"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/message_no_gps_Bin"
+                android:layout_width="match_parent"
+                android:text="Please enable location to use this app"
+                android:textSize="12dp"
+                android:textColor="#000000"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:textColor="#000000"
+                android:layout_height="1dp">
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_height="35dp">
+
+
+                <LinearLayout
+                    android:id="@+id/negative_button_no_gps_Bin"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/negative_txt_no_gps_Bin"
+                        android:layout_width="match_parent"
+                        android:text="CANCEL"
+                        android:gravity="center"
+                        android:textColor="#d8d8d8"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:textColor="#000000"
+                    android:layout_height="match_parent">
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/positive_button_no_gps_Bin"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/positive_txt_no_gps_Bin"
+                        android:layout_width="match_parent"
+                        android:text="ENABLE"
+                        android:gravity="center"
+                        android:textColor="@color/enter_buttonColor"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

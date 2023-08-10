@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:gravity="center"
+            android:paddingTop="36dp"
+            android:paddingBottom="36dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:textSize="18sp"
+            android:text="Place your device near to the bin and scan rfid or barcode. Then press submit button."
+            android:textColor="@color/black"/>
+        <ImageView android:id="@+id/iv_close_popup_rfid"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_close_popup"/>
+    </FrameLayout>
+
+</RelativeLayout>

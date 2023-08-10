@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/container_root_PreviewBinDetails"
+    tools:context=".bin.PreviewBinDetails">
+
+    <RelativeLayout android:id="@+id/header_oges_PreviewBinDetails"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white">
+        //Added 19.09.2020 imageview id
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="16dp"
+            />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header_oges_PreviewBinDetails"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_image2"/>
+
+    <RelativeLayout android:id="@+id/container_option_PreviewBinDetails"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/header_oges_PreviewBinDetails"
+        android:background="@color/white">
+
+        <LinearLayout android:id="@+id/container_exit_PreviewBinDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginLeft="12dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_exit"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="18dp"
+                android:text="Exit"
+                android:textColor="#244D8D"
+                android:textSize="9sp"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/container_exit_overlay_disabled_PreviewBinDetails"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:background="#80dedede"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <View android:id="@+id/vertical_line_one_PreviewBinDetails"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/container_exit_PreviewBinDetails"
+            android:background="#244D8D"/>
+
+
+        <LinearLayout android:id="@+id/container_change_capacity_PreviewBinDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_toRightOf="@+id/vertical_line_one_PreviewBinDetails"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_change_capacity"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="14dp"
+                android:text="Change Bin Capacity"
+                android:textColor="#244D8D"
+                android:textSize="9sp"/>
+        </LinearLayout>
+
+        <View android:id="@+id/vertical_line_two_PreviewBinDetails"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/container_change_capacity_PreviewBinDetails"
+            android:background="#244D8D"/>
+
+        <LinearLayout android:id="@+id/container_change_beah_PreviewBinDetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/vertical_line_two_PreviewBinDetails"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginLeft="12dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_checkbox"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="8dp"
+                android:textColor="#244D8D"
+                android:text="Change 5 digit of BEAH code"
+                android:textSize="9sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <ScrollView android:id="@+id/container_scrollview_outer_PreviewBinDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/container_option_PreviewBinDetails"
+        android:layout_above="@+id/bt_upload_PreviewBinDetails">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <RelativeLayout android:id="@+id/container_outer_PreviewBinDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#99597EC2"
+        android:paddingLeft="6dp"
+        android:paddingTop="6dp"
+        android:paddingRight="6dp"
+        android:paddingBottom="6dp">
+
+        <LinearLayout  android:id="@+id/container_transparent_PreviewBinDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:id="@+id/tx_governarate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Your Governorate is "/>
+            <TextView android:id="@+id/tv_governorate_value_PreviewBinDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/preview_greenish_text"
+                android:text=""/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tx_willayath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Your Willayat is "/>
+            <TextView android:id="@+id/tv_willayat_value_PreviewBinDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/preview_greenish_text"
+                android:text=""/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Your Bin Capacity is "/>
+                <TextView android:id="@+id/tv_bin_capacity_value_PreviewBinDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/preview_greenish_text"
+                    android:text=""/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Your selected Manufacturer is "/>
+                <TextView android:id="@+id/tv_manfacturer_value_PreviewBinDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/preview_greenish_text"
+                    android:text=""/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Your BEAH code is "/>
+                <TextView android:id="@+id/tv_beah_value_PreviewBinDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/preview_greenish_text"
+                    android:text=""/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="vertical">
+                <TextView android:id="@+id/tv_current_code_type_preview_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Your RFID is "/>
+                <TextView android:id="@+id/tv_rfid_value_PreviewBinDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/preview_greenish_text"
+                    android:text=""/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="vertical">
+                <TextView android:id="@+id/tv_current_latittude_longitude_PreviewBinDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Your Latitude and Longitude is "/>
+                <TextView android:id="@+id/tv_current_latittude_longitude_value_PreviewBinDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/preview_greenish_text"
+                    android:text=""/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+    <Button   android:id="@+id/bt_upload_PreviewBinDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/white_button_bg"
+        android:textColor="@drawable/white_button_text_click"
+        android:text="UPLOAD"/>
+
+</RelativeLayout>

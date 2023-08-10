@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/saved_data_to_device"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@drawable/custom_toast_bg"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/save_to_device_arrow"/>
+
+    <ImageView
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/device_rfid"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="Saved details to Device"/>
+
+</LinearLayout>

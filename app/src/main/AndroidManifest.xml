@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gpd.addbin">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <application
+        android:name=".bin.info.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/CustomTheme">
+        <activity android:name=".bin.ReadRFIDActivity"></activity>
+        <activity
+            android:name=".activity.UHFMainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".bin.SplashScreen"
+            android:theme="@style/AppThemeNoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".bin.LoginActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".bin.SelectGovernorate"
+            android:theme="@style/AppThemeNoActionBar" />
+
+        <receiver
+            android:name=".bin.info.ConnectivityReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".bin.SelectWillayat"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".bin.SaveServerDetails"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".bin.SelectCapacity"
+            android:label="@string/title_activity_select_capacity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".bin.SelectManufacturer"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".bin.AddBeahCode"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".bin.SelectFromList"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".bin.PreviewBinDetails"
+            android:theme="@style/AppThemeNoActionBar">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="*/*" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
+        </activity>
+        <activity android:name=".bin.SelectFromListEditGovernorate" />
+        <activity android:name=".bin.SelectFromListEditWillayat" />
+        <activity android:name=".bin.SelectFromListEditCapacity" />
+        <activity
+            android:name=".bin.NetworkSettingActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <receiver android:name=".bin.BootBroadcastReceiver"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
