@@ -54,7 +54,7 @@ public class ReadRFIDActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_r_f_i_d);
 
-
+        initializeRfid();
         logoutReceiver = new LogoutReceiver();
 
         // Register the logout receiver

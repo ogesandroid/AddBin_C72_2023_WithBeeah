@@ -327,9 +327,9 @@ public class AddBeahCode extends AppCompatActivity {
             accountCurrentBinDetails.setBinTime(s.toString());
             accountCurrentBinDetails.setDataBinStatus("1");
 
-            Intent intentPreview = new Intent(AddBeahCode.this, UHFMainActivity.class);
-            startActivityForResult(intentPreview, 116);
-            overridePendingTransition(R.anim.enter, R.anim.exit);
+//            Intent intentPreview = new Intent(AddBeahCode.this, UHFMainActivity.class);
+//            startActivityForResult(intentPreview, 116);
+//            overridePendingTransition(R.anim.enter, R.anim.exit);
         } else {
             Toast.makeText(AddBeahCode.this, "Please enter a valid BEAH code", Toast.LENGTH_LONG).show();
             final MediaPlayer mp = MediaPlayer.create(AddBeahCode.this, R.raw.beep);
