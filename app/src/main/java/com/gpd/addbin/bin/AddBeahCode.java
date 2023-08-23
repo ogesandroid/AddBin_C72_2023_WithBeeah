@@ -679,7 +679,13 @@ public class AddBeahCode extends AppCompatActivity {
 //                scanBarCode();
 
                 */
-                readTag();
+                if (etBeahCode.getText().toString().length() == 5) {
+                    readTag();
+                } else {
+                    Toast.makeText(AddBeahCode.this, "Please enter a valid BEAH code", Toast.LENGTH_LONG).show();
+                    final MediaPlayer mp = MediaPlayer.create(AddBeahCode.this, R.raw.beep);
+                    mp.start();
+                }
                 return true;
             }
         }
