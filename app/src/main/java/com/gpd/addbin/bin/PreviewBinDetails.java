@@ -122,11 +122,11 @@ public class PreviewBinDetails extends AppCompatActivity {
 
     //..........GPS Location settings start...............................
     // location updates interval - 10sec
-    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 2000;
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 1000; // 1 second
     // fastest updates interval - 3 sec
     // location updates will be received if another app is requesting the locations
     // than your app can handle
-    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 2000;
+    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 1000; // 1 second
     private static final int REQUEST_CHECK_SETTINGS = 100;
     // bunch of location related apis
 //    private FusedLocationProviderClient mFusedLocationClient;
@@ -159,7 +159,7 @@ public class PreviewBinDetails extends AppCompatActivity {
         startLocationServices();
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(2 * 1000);
+        mLocationRequest.setInterval(1 * 1000); // 1 second
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -237,12 +237,12 @@ public class PreviewBinDetails extends AppCompatActivity {
         tx_governarate = (TextView) findViewById(R.id.tx_governarate);  //Added 25.5.21
         tx_willayath = (TextView) findViewById(R.id.tx_willayath);  //Added 25.5.21
         if (accountCurrentBinDetails.getGovernarateStatus().equals("1")) {
-            tx_governarate.setText("Your "+accountCurrentBinDetails.getGovernarateTitle()+" is ");
+            tx_governarate.setText("Your " + accountCurrentBinDetails.getGovernarateTitle() + " is ");
         } else {
             tx_governarate.setText("Your Governorate is ");
         }
         if (accountCurrentBinDetails.getWillayathStatus().equals("1")) {
-            tx_willayath.setText("Your "+accountCurrentBinDetails.getWillayathTitle()+" is ");
+            tx_willayath.setText("Your " + accountCurrentBinDetails.getWillayathTitle() + " is ");
         } else {
             tx_willayath.setText("Your Willayat is ");
         }
@@ -948,7 +948,7 @@ public class PreviewBinDetails extends AppCompatActivity {
         startLocationServices();
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(2 * 1000);
+        mLocationRequest.setInterval(1 * 1000); // 1 second
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -1015,6 +1015,33 @@ public class PreviewBinDetails extends AppCompatActivity {
                 }).check();
     }
 
+    //    private void initLocationSettings() {
+//        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+//        mSettingsClient = LocationServices.getSettingsClient(this);
+//
+//        mLocationCallback = new LocationCallback() {
+//            @Override
+//            public void onLocationResult(LocationResult locationResult) {
+//                super.onLocationResult(locationResult);
+//                // location is received
+//                mCurrentLocation = locationResult.getLastLocation();
+//                mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
+//
+//                updateLocationUI();
+//            }
+//        };
+//
+//        mRequestingLocationUpdates = false;
+//
+//        mLocationRequest = new LocationRequest();
+//        mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
+//        mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
+//        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//
+//        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+//        builder.addLocationRequest(mLocationRequest);
+//        mLocationSettingsRequest = builder.build();
+//    }
     private void initLocationSettings() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mSettingsClient = LocationServices.getSettingsClient(this);
@@ -1023,19 +1050,30 @@ public class PreviewBinDetails extends AppCompatActivity {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
-                // location is received
                 mCurrentLocation = locationResult.getLastLocation();
                 mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
 
-                updateLocationUI();
+                if (mCurrentLocation != null) {
+                    double accuracy = mCurrentLocation.getAccuracy();
+                    if (accuracy <= 20) { // Checking if accuracy is within acceptable range
+                        updateLocationUI();
+                    } else {
+                        // Retry fetching location after a short delay
+                        if (ActivityCompat.checkSelfPermission(PreviewBinDetails.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(PreviewBinDetails.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        mFusedLocationClient.requestLocationUpdates(mLocationRequest,
+                                mLocationCallback, Looper.myLooper());
+                    }
+                }
             }
         };
 
         mRequestingLocationUpdates = false;
 
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
-        mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
+        mLocationRequest.setInterval(1000); // 1 second interval
+        mLocationRequest.setFastestInterval(500); // 0.5 second fastest interval
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
@@ -1043,29 +1081,40 @@ public class PreviewBinDetails extends AppCompatActivity {
         mLocationSettingsRequest = builder.build();
     }
 
+    //    private void updateLocationUI() {
+//        System.out.println("@@@@locationend");
+//        if (mCurrentLocation != null) {
+////            txtLocationResult.setText(
+////                    "Lat: " + mCurrentLocation.getLatitude() + ", " +
+////                            "Lng: " + mCurrentLocation.getLongitude()
+////            );
+//            latitude = mCurrentLocation.getLatitude();
+//            longitude = mCurrentLocation.getLongitude();
+//            System.out.println("@@@@latupdate" + latitude);
+//            accountCurrentBinDetails.setBinLatitude(String.valueOf(latitude));
+//            accountCurrentBinDetails.setBinLongitude(String.valueOf(longitude));
+//            tvCurrentLatitudeLongitude.setText(String.valueOf(latitude) + ", " + String.valueOf(longitude));
+//
+////            // giving a blink animation on TextView
+////            txtLocationResult.setAlpha(0);
+////            txtLocationResult.animate().alpha(1).setDuration(300);
+////
+////            // location last updated timefingerprint
+////            txtUpdatedOn.setText("Last updated on: " + mLastUpdateTime);
+//        }
+//
+//        //  toggleButtons();
+//    }
     private void updateLocationUI() {
-        System.out.println("@@@@locationend");
         if (mCurrentLocation != null) {
-//            txtLocationResult.setText(
-//                    "Lat: " + mCurrentLocation.getLatitude() + ", " +
-//                            "Lng: " + mCurrentLocation.getLongitude()
-//            );
             latitude = mCurrentLocation.getLatitude();
             longitude = mCurrentLocation.getLongitude();
-            System.out.println("@@@@latupdate" + latitude);
+            float accuracy = mCurrentLocation.getAccuracy();
+            System.out.println("@@@@latupdate " + latitude + " longupdate " + longitude + " accuracy " + accuracy);
             accountCurrentBinDetails.setBinLatitude(String.valueOf(latitude));
             accountCurrentBinDetails.setBinLongitude(String.valueOf(longitude));
-            tvCurrentLatitudeLongitude.setText(String.valueOf(latitude) + ", " + String.valueOf(longitude));
-
-//            // giving a blink animation on TextView
-//            txtLocationResult.setAlpha(0);
-//            txtLocationResult.animate().alpha(1).setDuration(300);
-//
-//            // location last updated timefingerprint
-//            txtUpdatedOn.setText("Last updated on: " + mLastUpdateTime);
+            tvCurrentLatitudeLongitude.setText(String.valueOf(latitude) + ", " + String.valueOf(longitude) + " (Accuracy: " + accuracy + " meters)");
         }
-
-        //  toggleButtons();
     }
 
     @Override
@@ -1077,50 +1126,76 @@ public class PreviewBinDetails extends AppCompatActivity {
 
     }
 
+    //    private void startLocationUpdates() {
+//        mSettingsClient
+//                .checkLocationSettings(mLocationSettingsRequest)
+//                .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
+//                    @SuppressLint("MissingPermission")
+//                    @Override
+//                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+//                        //Log.i(TAG, "All location settings are satisfied.");
+//
+////                        Toast.makeText(getApplicationContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
+//                        // loading.dismiss();
+//                        //noinspection MissingPermission
+//                        mFusedLocationClient.requestLocationUpdates(mLocationRequest,
+//                                mLocationCallback, Looper.myLooper());
+//
+//                        updateLocationUI();
+//                    }
+//                })
+//                .addOnFailureListener(this, new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        int statusCode = ((ApiException) e).getStatusCode();
+//                        switch (statusCode) {
+//                            case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+//                                // Log.i(TAG, "Location settings are not satisfied. Attempting to upgrade " +
+//                                //      "location settings ");
+//                                try {
+//                                    // Show the dialog by calling startResolutionForResult(), and check the
+//                                    // result in onActivityResult().
+//                                    ResolvableApiException rae = (ResolvableApiException) e;
+//                                    rae.startResolutionForResult(PreviewBinDetails.this, REQUEST_CHECK_SETTINGS);
+//                                } catch (IntentSender.SendIntentException sie) {
+//                                    // Log.i(TAG, "PendingIntent unable to execute request.");
+//                                }
+//                                break;
+//                            case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+//                                String errorMessage = "Location settings are inadequate, and cannot be fixed here. Fix in Settings.";
+//                                // Log.e(TAG, errorMessage);
+//
+//                                Toast.makeText(PreviewBinDetails.this, errorMessage, Toast.LENGTH_LONG).show();
+//                        }
+//
+//                        updateLocationUI();
+//                    }
+//                });
+//    }
     private void startLocationUpdates() {
-        mSettingsClient
-                .checkLocationSettings(mLocationSettingsRequest)
-                .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
-                    @SuppressLint("MissingPermission")
-                    @Override
-                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                        //Log.i(TAG, "All location settings are satisfied.");
-
-//                        Toast.makeText(getApplicationContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
-                        // loading.dismiss();
-                        //noinspection MissingPermission
-                        mFusedLocationClient.requestLocationUpdates(mLocationRequest,
-                                mLocationCallback, Looper.myLooper());
-
-                        updateLocationUI();
-                    }
+        mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
+                .addOnSuccessListener(this, locationSettingsResponse -> {
+                    //noinspection MissingPermission
+                    mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+                    updateLocationUI();
                 })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        int statusCode = ((ApiException) e).getStatusCode();
-                        switch (statusCode) {
-                            case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                // Log.i(TAG, "Location settings are not satisfied. Attempting to upgrade " +
-                                //      "location settings ");
-                                try {
-                                    // Show the dialog by calling startResolutionForResult(), and check the
-                                    // result in onActivityResult().
-                                    ResolvableApiException rae = (ResolvableApiException) e;
-                                    rae.startResolutionForResult(PreviewBinDetails.this, REQUEST_CHECK_SETTINGS);
-                                } catch (IntentSender.SendIntentException sie) {
-                                    // Log.i(TAG, "PendingIntent unable to execute request.");
-                                }
-                                break;
-                            case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                                String errorMessage = "Location settings are inadequate, and cannot be fixed here. Fix in Settings.";
-                                // Log.e(TAG, errorMessage);
-
-                                Toast.makeText(PreviewBinDetails.this, errorMessage, Toast.LENGTH_LONG).show();
-                        }
-
-                        updateLocationUI();
+                .addOnFailureListener(this, e -> {
+                    int statusCode = ((ApiException) e).getStatusCode();
+                    switch (statusCode) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            try {
+                                ResolvableApiException rae = (ResolvableApiException) e;
+                                rae.startResolutionForResult(PreviewBinDetails.this, REQUEST_CHECK_SETTINGS);
+                            } catch (IntentSender.SendIntentException sie) {
+                                // Handle error
+                            }
+                            break;
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                            String errorMessage = "Location settings are inadequate, and cannot be fixed here. Fix in Settings.";
+                            Toast.makeText(PreviewBinDetails.this, errorMessage, Toast.LENGTH_LONG).show();
+                            break;
                     }
+                    updateLocationUI();
                 });
     }
 
